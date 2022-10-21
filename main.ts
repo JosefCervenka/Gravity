@@ -118,6 +118,16 @@ class Star {
 
         this.position.x = this.position.x + (this.velocity.x * deltaTime);
         this.position.y = this.position.y + (this.velocity.y * deltaTime);
+
+        if(this.position.y < 0 || this.position.y > canvas.height){
+
+            this.velocity = new Vector2D(this.velocity.x,this.velocity.y * -1);
+        }
+
+        if(this.position.x < 0 || this.position.x > canvas.width){
+
+            this.velocity = new Vector2D(this.velocity.x * -1,this.velocity.y);
+        }
     }
 
     public constructor(position: Point, mass:number, Velocity : Vector2D) {
@@ -149,13 +159,16 @@ class Vector2D{
     }
 }
 
-let star = new Star(new Point(100,600), 20, new Vector2D(0,0));
-let star2 = new Star(new Point(700,50), 20, new Vector2D(0,0.));
+//let star = new Star(new Point(100,600), 20, new Vector2D(0,0));
+//let star2 = new Star(new Point(700,50), 20, new Vector2D(0,0.));
+//let star3 = new Star(new Point(400,200), 20, new Vector2D(0,0.));
 
-let star3 = new Star(new Point(400,200), 20, new Vector2D(0,0.));
+//space.stars.push(star);
+//space.stars.push(star2);
+//space.stars.push(star3);
 
+for (let i = 0; i < 20; i++) {
+    let star = new Star(new Point(Math.random() * canvas.width,Math.random() * canvas.height), 20, new Vector2D(0,0));
 
-
-space.stars.push(star);
-space.stars.push(star2);
-space.stars.push(star3);
+    space.stars.push(star);
+}
